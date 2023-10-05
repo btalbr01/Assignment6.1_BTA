@@ -2,15 +2,15 @@ public class DepthFirstSearch {
        
 	Node root;
 	int nodeCount;
-	int lHeight;
-	int rHeight;
+	int height;
+	int maxHeight;
       
 		public DepthFirstSearch()
         {               
 			System.out.println("Call DFS with root node to do a Depth First Search.");
 			nodeCount = 0;
-			lHeight = 0;
-			rHeight = 0;
+			height = 0;
+			maxHeight = 0;
         }//end Constructor
        
 		public void DFS(Node node)        
@@ -19,31 +19,22 @@ public class DepthFirstSearch {
                {
 				System.out.println(node.getData());  
                 nodeCount++;
+                height++;
                 DFS(node.getlChild());
-                DFS(node.getrChild());   
+                DFS(node.getrChild()); 
                }//end if   
-			if (node != null)
-				if(node.getlChild() == null && node.getrChild() == null)
-					System.out.println("Nodes traversed: " + nodeCount);
-			int height = 0;
-			   if (node != null)
-			       height = 1 + Math.max(DFS(node.getlChild()),DFS(node.getrChild()));
-
 			
+			if (node == null)
+				height--;
 			
+			if(maxHeight < height)
+			{
+				maxHeight = height;
+			}
+	
+			if (node != null && node.getlChild() == null && node.getrChild() == null)
+				{
+				System.out.println("Nodes traversed: " + nodeCount + "\n" + "Tree height: " + (maxHeight + 1));
+				}
         }// end DFS
-       /** 
-        public void totalNodes()
-        {
-        	System.out.println("Nodes traversed: " + nodeCount);
-        }//end totalNodes
-     
-        public int getTreeHeight(Node node) 
-        {
-            if(node == null) 
-            {
-                return -1;
-            }
-            return Math.max(getTreeHeight(node.getlChild()), getTreeHeight(node.getrChild()))+1;       
-        }//end getNodeHeight*/
 }//end class

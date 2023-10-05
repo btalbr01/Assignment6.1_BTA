@@ -19,5 +19,4 @@ public class Application {
 		DepthFirstSearch aSearch=new DepthFirstSearch();
 		aSearch.DFS(root);
 	}
-
 }
